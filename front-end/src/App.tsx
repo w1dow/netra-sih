@@ -2,18 +2,18 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home/Home';
-import ActiveTenders from './pages/ActiveTenders/ActiveTenders';
-import TenderDetails from './pages/TenderDetails/TenderDetails';
-import MyTenders from './pages/MyTenders/MyTenders';
-import BidDetails from './pages/MyTenders/BidDetails';
-import Compliance from './pages/Compliance/Compliance';
-import Profile from './pages/Profile/Profile';
-import Company from './pages/Company/Company';
-import Notifications from './pages/Notifications/Notifications';
-import Calendar from './pages/Calendar/Calendar';
-import Login from './pages/Auth/Login';
-import NotFoundPage from './components/common/NotFoundPage';
+import Home from './pages/Home';
+import ActiveTenders from './pages/ActiveTenders';
+import TenderDetails from './pages/TenderDetails';
+import MyTenders from './pages/MyTenders';
+import BidDetails from './pages/BidDetails';
+import Compliance from './pages/Compliance';
+import Company from './pages/Company';
+import Profile from './pages/Profile';
+import Notifications from './pages/Notifications';
+import Calendar from './pages/Calendar';
+import Login from './pages/Login';
+import { NotFoundPage } from './components/StateViews';
 
 export default function App() {
   return (

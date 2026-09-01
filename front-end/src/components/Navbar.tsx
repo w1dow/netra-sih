@@ -1,93 +1,77 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  Bell,
-  Calendar,
-  Globe,
-  Accessibility,
-  Menu,
-  X,
-  User,
-  LogIn,
-} from 'lucide-react';
+import { Bell, Calendar, User, Menu, X } from 'lucide-react';
 import Logo from './Logo';
-import { navLinks } from '@/data';
-import { useCurrentUser, useUnreadCount } from '@/hooks';
-import './Navbar.css';
+import { navLinks } from '../constants';
+import { useNotifications, useCurrentUser } from '../api';
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const { data: notifications } = useNotifications();
   const { data: user } = useCurrentUser();
-  const { data: unreadCount = 0 } = useUnreadCount();
 
-  const userName = user?.name || 'Rajesh Kumar';
+  const unreadCount = notifications ? notifications.filter((n) => !n.read).length : 0;
 
   return (
-    <header className={`navbar ${isHome ? 'navbar--transparent' : 'navbar--solid'}`} role="banner">
-      <a href="#main-content" className="sr-only" style={{ position: 'absolute' }}>
-        Skip to main content
-      </a>
-      <div className="navbar__container container">
-        {/* Logo */}
-        <Link to="/" className="navbar__logo" aria-label="NETRA Home">
-          <Logo variant={isHome ? 'light' : 'dark'} size="md" />
+    <header className="navbar">
+      <div className="navbar__container">
+        <Link to="/" className="navbar__brand" onClick={() => setMobileMenuOpen(false)}>
+          <Logo size="md" />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="navbar__nav" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={`navbar__link ${location.pathname === link.href ? 'navbar__link--active' : ''}`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* Desktop Links */}
+        <nav className="navbar__nav" aria-label="Main Navigation">
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`navbar__link ${isActive ? 'navbar__link--active' : ''}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Right Actions */}
+        {/* Actions */}
         <div className="navbar__actions">
-          <Link to="/notifications" className="navbar__icon-btn" aria-label="Notifications" title="Notifications">
-            <Bell size={18} />
-            {(unreadCount ?? 0) > 0 && <span className="navbar__badge">{unreadCount}</span>}
-          </Link>
-          <Link to="/calendar" className="navbar__icon-btn" aria-label="Calendar" title="Procurement Calendar">
-            <Calendar size={18} />
-          </Link>
-          <button className="navbar__icon-btn" aria-label="Language" title="Language selector">
-            <Globe size={18} />
-          </button>
-          <button className="navbar__icon-btn" aria-label="Accessibility options" title="Accessibility">
-            <Accessibility size={18} />
-          </button>
-
-          {/* Login / Profile */}
-          <Link to="/profile" className="navbar__profile" aria-label={`Profile: ${userName}`} title="Go to profile">
-            <div className="navbar__avatar">
-              <User size={16} />
-            </div>
-            <span className="navbar__profile-name">{userName}</span>
+          <Link to="/calendar" className="navbar__action-btn" title="Events & Deadlines">
+            <Calendar size={19} />
           </Link>
 
-          {/* Mobile menu toggle */}
+          <Link to="/notifications" className="navbar__action-btn navbar__action-btn--badge" title="Notifications">
+            <Bell size={19} />
+            {unreadCount > 0 && <span className="navbar__badge">{unreadCount}</span>}
+          </Link>
+
+          <Link to={user ? '/profile' : '/login'} className="navbar__profile-btn">
+            {user?.avatar ? (
+              <img src={user.avatar} alt={user.name} className="navbar__avatar-img" />
+            ) : (
+              <div className="navbar__avatar-fallback">
+                <User size={16} />
+              </div>
+            )}
+            <span className="navbar__user-name">{user ? user.name.split(' ')[0] : 'Sign In'}</span>
+          </Link>
+
           <button
-            className="navbar__hamburger"
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={mobileMenuOpen}
+            className="navbar__toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="navbar__mobile-menu" role="navigation" aria-label="Mobile navigation">
+        <div className="navbar__mobile-drawer">
           <nav className="navbar__mobile-nav">
             {navLinks.map((link) => (
               <Link
@@ -99,34 +83,6 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              to="/notifications"
-              className="navbar__mobile-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Notifications ({unreadCount})
-            </Link>
-            <Link
-              to="/calendar"
-              className="navbar__mobile-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Calendar Schedule
-            </Link>
-            <Link
-              to="/profile"
-              className="navbar__mobile-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              My Profile
-            </Link>
-            <Link
-              to="/login"
-              className="navbar__mobile-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Sign In (Express Auth)
-            </Link>
           </nav>
         </div>
       )}
