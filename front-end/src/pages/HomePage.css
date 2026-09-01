@@ -1,0 +1,312 @@
+/* ============================================================
+   HomePage Styles
+   ============================================================ */
+
+/* ----- Hero Section ----- */
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: calc(64px + var(--space-12)) var(--space-6) var(--space-16);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, var(--color-deep-navy) 0%, #0d2a5e 40%, var(--color-govt-blue) 100%);
+  z-index: 0;
+}
+
+/* Subtle geometric pattern overlay for institutional feel */
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(18, 59, 120, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(255, 153, 51, 0.06) 0%, transparent 40%);
+  z-index: 1;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  /* Subtle grid pattern */
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero__heading {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-extrabold);
+  color: var(--color-white);
+  line-height: 1.15;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+.hero__subheading {
+  font-size: var(--font-size-lg);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin-bottom: var(--space-8);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----- Stats Section (floating card) ----- */
+.stats-section {
+  margin-top: -48px;
+  position: relative;
+  z-index: 5;
+  padding: 0 var(--space-6);
+}
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-stat);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+}
+
+.stats-card > *:not(:last-child) {
+  border-right: 1px solid var(--color-border-light);
+}
+
+/* ----- Generic Section Styles ----- */
+.section {
+  padding: var(--space-16) 0;
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.section__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-extrabold);
+  color: var(--color-deep-navy);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.section__title--light {
+  color: var(--color-white);
+}
+
+.section__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ----- Tenders Section ----- */
+.tenders-section {
+  background: var(--color-white);
+}
+
+.tenders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.tenders-empty {
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.tenders-empty__reset {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-6);
+  background: var(--color-deep-navy);
+  color: var(--color-white);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.tenders-empty__reset:hover {
+  background: var(--color-govt-blue);
+}
+
+/* ----- Compliance Section ----- */
+.compliance-section {
+  background: var(--color-light-bg);
+}
+
+.compliance-workflow-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* ----- Categories Section ----- */
+.categories-section {
+  background: var(--color-white);
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+/* ----- Trust Section ----- */
+.trust-section {
+  background: linear-gradient(135deg, var(--color-deep-navy) 0%, #0d2a5e 100%);
+  padding: var(--space-16) 0;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+.trust-quote {
+  text-align: center;
+  padding: var(--space-6) var(--space-8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.04);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.trust-quote p {
+  font-size: var(--font-size-base);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .hero__heading {
+    font-size: var(--font-size-3xl);
+  }
+
+  .stats-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stats-card > *:nth-child(3) {
+    border-right: none;
+  }
+
+  .stats-card > *:nth-child(n+4) {
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .tenders-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 440px;
+    padding-top: calc(64px + var(--space-8));
+    padding-bottom: var(--space-12);
+  }
+
+  .hero__heading {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero__subheading {
+    font-size: var(--font-size-base);
+  }
+
+  .stats-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-card > * {
+    border-right: none !important;
+  }
+
+  .stats-card > *:nth-child(odd) {
+    border-right: 1px solid var(--color-border-light) !important;
+  }
+
+  .stats-card > *:nth-child(n+3) {
+    border-top: 1px solid var(--color-border-light);
+  }
+
+  .tenders-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section {
+    padding: var(--space-10) 0;
+  }
+
+  .section__title {
+    font-size: var(--font-size-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__heading {
+    font-size: var(--font-size-xl);
+  }
+
+  .stats-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-quote {
+    padding: var(--space-4);
+  }
+}
