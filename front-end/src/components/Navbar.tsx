@@ -7,17 +7,23 @@ import {
   Accessibility,
   Menu,
   X,
-  ChevronDown,
   User,
+  LogIn,
 } from 'lucide-react';
 import Logo from './Logo';
-import { navLinks, currentUser } from '@/data';
+import { navLinks } from '@/data';
+import { useCurrentUser, useUnreadCount } from '@/hooks';
 import './Navbar.css';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
+
+  const { data: user } = useCurrentUser();
+  const { data: unreadCount = 0 } = useUnreadCount();
+
+  const userName = user?.name || 'Rajesh Kumar';
 
   return (
     <header className={`navbar ${isHome ? 'navbar--transparent' : 'navbar--solid'}`} role="banner">
@@ -45,13 +51,13 @@ export default function Navbar() {
 
         {/* Right Actions */}
         <div className="navbar__actions">
-          <button className="navbar__icon-btn" aria-label="Notifications" title="Notifications">
+          <Link to="/notifications" className="navbar__icon-btn" aria-label="Notifications" title="Notifications">
             <Bell size={18} />
-            <span className="navbar__badge">3</span>
-          </button>
-          <button className="navbar__icon-btn" aria-label="Calendar" title="Calendar">
+            {(unreadCount ?? 0) > 0 && <span className="navbar__badge">{unreadCount}</span>}
+          </Link>
+          <Link to="/calendar" className="navbar__icon-btn" aria-label="Calendar" title="Procurement Calendar">
             <Calendar size={18} />
-          </button>
+          </Link>
           <button className="navbar__icon-btn" aria-label="Language" title="Language selector">
             <Globe size={18} />
           </button>
@@ -59,12 +65,12 @@ export default function Navbar() {
             <Accessibility size={18} />
           </button>
 
-          {/* Profile */}
-          <Link to="/profile" className="navbar__profile" aria-label={`Profile: ${currentUser.name}`} title="Go to profile">
+          {/* Login / Profile */}
+          <Link to="/profile" className="navbar__profile" aria-label={`Profile: ${userName}`} title="Go to profile">
             <div className="navbar__avatar">
               <User size={16} />
             </div>
-            <span className="navbar__profile-name">{currentUser.name}</span>
+            <span className="navbar__profile-name">{userName}</span>
           </Link>
 
           {/* Mobile menu toggle */}
@@ -94,11 +100,32 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
+              to="/notifications"
+              className="navbar__mobile-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Notifications ({unreadCount})
+            </Link>
+            <Link
+              to="/calendar"
+              className="navbar__mobile-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Calendar Schedule
+            </Link>
+            <Link
               to="/profile"
               className="navbar__mobile-link"
               onClick={() => setMobileMenuOpen(false)}
             >
               My Profile
+            </Link>
+            <Link
+              to="/login"
+              className="navbar__mobile-link"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Sign In (Express Auth)
             </Link>
           </nav>
         </div>

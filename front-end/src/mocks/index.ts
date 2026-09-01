@@ -1,19 +1,23 @@
 // ============================================================
-// NETRA — Navigation & UI Configuration Data
+// NETRA — Sample / Mock Data
+// Centralized data for all components
 // ============================================================
 
 import type {
-  NavLink,
-  FooterSection,
+  Tender,
   Department,
   ProcurementCategory,
-  FilterOption,
+  ComplianceCheck,
+  ComplianceWorkflowStep,
   Statistic,
   TrustPillar,
-  ComplianceWorkflowStep,
+  UserProfile,
+  FilterOption,
+  NavLink,
+  FooterSection,
 } from '@/types';
 
-// ----- Navigation Links (Bidder Focus) -----
+// ----- Navigation Links -----
 export const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'Active Tenders', href: '/tenders' },
@@ -21,6 +25,14 @@ export const navLinks: NavLink[] = [
   { label: 'Compliance', href: '/compliance' },
   { label: 'Company', href: '/company' },
 ];
+
+export const currentUser: UserProfile = {
+  name: 'Rajesh Kumar',
+  role: 'Business Development Manager\nAuthorised Bid Representative',
+  department: 'ABC Technologies Pvt. Ltd.',
+  email: 'rajesh.kumar@abctech.in',
+  avatar: '',
+};
 
 // ----- Key Statistics -----
 export const statistics: Statistic[] = [
@@ -44,6 +56,118 @@ export const departments: Department[] = [
   { id: 'dept-8', name: 'Ministry of Housing & Urban Affairs', shortName: 'MoHUA' },
 ];
 
+// ----- Active Tenders -----
+export const tenders: Tender[] = [
+  {
+    id: '1',
+    tenderId: 'GEM/2026/PROC/01842',
+    title: 'Supply and Installation of Smart Surveillance Systems',
+    departmentName: 'Ministry of Electronics & IT',
+    location: 'New Delhi',
+    deadline: '2026-09-12T17:00:00+05:30',
+    estimatedValue: 24000000,
+    status: 'ACTIVE',
+    categoryName: 'IT & Electronics',
+    description: 'Procurement of AI-enabled smart surveillance camera systems with edge computing capabilities for government premises security enhancement.',
+  },
+  {
+    id: '2',
+    tenderId: 'GEM/2026/PROC/01856',
+    title: 'Construction of Six-Lane National Highway NH-48 Extension',
+    departmentName: 'Ministry of Road Transport & Highways',
+    location: 'Gujarat',
+    deadline: '2026-09-18T15:00:00+05:30',
+    estimatedValue: 1860000000,
+    status: 'ACTIVE',
+    categoryName: 'Infrastructure',
+    description: 'Design, construction, and maintenance of six-lane highway extension with service roads, toll plazas, and intelligent traffic management systems.',
+  },
+  {
+    id: '3',
+    tenderId: 'GEM/2026/PROC/01873',
+    title: 'Procurement of Modular ICU Equipment for District Hospitals',
+    departmentName: 'Ministry of Health & Family Welfare',
+    location: 'Multiple States',
+    deadline: '2026-09-25T12:00:00+05:30',
+    estimatedValue: 458000000,
+    status: 'ACTIVE',
+    categoryName: 'Healthcare',
+    description: 'Supply, installation, and commissioning of modular ICU setups including ventilators, patient monitors, and infusion systems for 120 district hospitals.',
+  },
+  {
+    id: '4',
+    tenderId: 'GEM/2026/PROC/01901',
+    title: 'Armoured Vehicle Fleet Maintenance Contract',
+    departmentName: 'Ministry of Defence',
+    location: 'Pune',
+    deadline: '2026-09-30T14:00:00+05:30',
+    estimatedValue: 3200000000,
+    status: 'ACTIVE',
+    categoryName: 'Defence & Security',
+    description: 'Comprehensive annual maintenance contract for armoured vehicle fleet including spare parts supply, overhaul services, and field maintenance support.',
+  },
+  {
+    id: '5',
+    tenderId: 'GEM/2026/PROC/01915',
+    title: 'Solar Power Plant Installation — 50MW Capacity',
+    departmentName: 'Ministry of New & Renewable Energy',
+    location: 'Rajasthan',
+    deadline: '2026-10-05T17:00:00+05:30',
+    estimatedValue: 2100000000,
+    status: 'ACTIVE',
+    categoryName: 'Energy',
+    description: 'Engineering, procurement, and construction of a 50MW ground-mounted solar photovoltaic power plant with 25-year power purchase agreement.',
+  },
+  {
+    id: '6',
+    tenderId: 'GEM/2026/PROC/01928',
+    title: 'Metro Rail Signalling System Upgrade — Phase III',
+    departmentName: 'Ministry of Housing & Urban Affairs',
+    location: 'Bangalore',
+    deadline: '2026-10-10T16:00:00+05:30',
+    estimatedValue: 952000000,
+    status: 'ACTIVE',
+    categoryName: 'Transportation',
+    description: 'Upgrade of existing CBTC signalling system to next-generation GoA4 communication-based train control for Namma Metro Phase III corridors.',
+  },
+  {
+    id: '7',
+    tenderId: 'GEM/2026/PROC/01934',
+    title: 'National Digital Education Platform Development',
+    departmentName: 'Ministry of Education',
+    location: 'New Delhi',
+    deadline: '2026-10-15T15:00:00+05:30',
+    estimatedValue: 385000000,
+    status: 'ACTIVE',
+    categoryName: 'IT & Electronics',
+    description: 'Development and deployment of a scalable national digital education platform supporting 10 million concurrent users with multilingual content delivery.',
+  },
+  {
+    id: '8',
+    tenderId: 'GEM/2026/PROC/01947',
+    title: 'Railway Station Modernisation — Tier-II Cities',
+    departmentName: 'Ministry of Railways',
+    location: 'Multiple Cities',
+    deadline: '2026-10-20T17:00:00+05:30',
+    estimatedValue: 1560000000,
+    status: 'UPCOMING',
+    categoryName: 'Infrastructure',
+    description: 'Comprehensive modernisation of 15 railway stations including platform upgrades, passenger amenities, accessibility features, and smart station management.',
+  },
+  {
+    id: '9',
+    tenderId: 'GEM/2026/PROC/01953',
+    title: 'Telemedicine Infrastructure for Primary Health Centres',
+    departmentName: 'Ministry of Health & Family Welfare',
+    location: 'Madhya Pradesh',
+    deadline: '2026-09-08T12:00:00+05:30',
+    estimatedValue: 126000000,
+    status: 'UNDER_EVALUATION',
+    categoryName: 'Healthcare',
+    description: 'Establishment of telemedicine hubs in 200 primary health centres with video conferencing equipment, diagnostic devices, and cloud-based health records.',
+  },
+];
+
 // ----- Procurement Categories -----
 export const procurementCategories: ProcurementCategory[] = [
   { id: 'cat-1', name: 'Infrastructure', icon: 'Building2', activeTenders: 2156 },
@@ -54,6 +178,21 @@ export const procurementCategories: ProcurementCategory[] = [
   { id: 'cat-6', name: 'Education', icon: 'GraduationCap', activeTenders: 1120 },
   { id: 'cat-7', name: 'Energy', icon: 'Zap', activeTenders: 1678 },
   { id: 'cat-8', name: 'Public Works', icon: 'HardHat', activeTenders: 1918 },
+];
+
+// ----- Compliance Checks -----
+export const complianceChecks: ComplianceCheck[] = [
+  { id: 'cc-1', name: 'GST Registration', status: 'compliant', description: 'Goods and Services Tax registration verified' },
+  { id: 'cc-2', name: 'PAN Verification', status: 'compliant', description: 'Permanent Account Number validation complete' },
+  { id: 'cc-3', name: 'Udyam / MSME Registration', status: 'compliant', description: 'Micro, Small & Medium Enterprise registration verified' },
+  { id: 'cc-4', name: 'Income Tax / ITR Compliance', status: 'compliant', description: 'Income tax returns filed and verified for last 3 years' },
+  { id: 'cc-5', name: 'EPFO / ESIC Compliance', status: 'review', description: 'Employee provident fund and state insurance records under review' },
+  { id: 'cc-6', name: 'Startup India', status: 'compliant', description: 'DPIIT recognised startup registration verified' },
+  { id: 'cc-7', name: 'NSIC Registration', status: 'compliant', description: 'National Small Industries Corporation registration active' },
+  { id: 'cc-8', name: 'OEM Authorization', status: 'review', description: 'Original Equipment Manufacturer authorization letter pending verification' },
+  { id: 'cc-9', name: 'Make in India / Local Content', status: 'compliant', description: 'Local content requirements meet minimum threshold' },
+  { id: 'cc-10', name: 'Blacklisting / Debarment', status: 'non-compliant', description: 'Entity flagged in debarment registry — manual review required' },
+  { id: 'cc-11', name: 'DigiLocker Verification', status: 'compliant', description: 'Digital document locker verification completed successfully' },
 ];
 
 // ----- Compliance Workflow Steps -----
@@ -154,16 +293,16 @@ export const footerSections: FooterSection[] = [
   {
     title: 'Resources',
     links: [
-      { label: 'Bidder Guidelines', href: '/tenders' },
-      { label: 'Procurement Rules', href: '/tenders' },
-      { label: 'FAQs & Help', href: '/compliance' },
+      { label: 'User Guide', href: '/tenders' },
+      { label: 'Procurement Guidelines', href: '/tenders' },
+      { label: 'FAQs', href: '/compliance' },
     ],
   },
   {
     title: 'Legal',
     links: [
       { label: 'Privacy Policy', href: '/' },
-      { label: 'Terms of Service', href: '/' },
+      { label: 'Terms of Use', href: '/' },
       { label: 'Data Security', href: '/' },
     ],
   },

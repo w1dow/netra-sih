@@ -1,20 +1,16 @@
-// ============================================================
-// NETRA — TypeScript Types & Interfaces
-// ============================================================
+export * from './auth';
+export * from './user';
+export * from './company';
+export * from './tender';
+export * from './bid';
+export * from './compliance';
+export * from './document';
+export * from './notification';
+export * from './calendar';
+export * from './news';
+export * from './api';
 
-export interface Tender {
-  id: string;
-  tenderId: string;
-  title: string;
-  department: string;
-  location: string;
-  bidDeadline: string;
-  estimatedValue: string;
-  status: 'ACTIVE' | 'CLOSED' | 'UPCOMING' | 'UNDER EVALUATION';
-  category: string;
-  description: string;
-}
-
+// UI Helper types
 export interface Department {
   id: string;
   name: string;
@@ -26,20 +22,6 @@ export interface ProcurementCategory {
   name: string;
   icon: string;
   activeTenders: number;
-}
-
-export interface ComplianceCheck {
-  id: string;
-  name: string;
-  status: 'compliant' | 'review' | 'non-compliant';
-  description: string;
-}
-
-export interface ComplianceWorkflowStep {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
 }
 
 export interface Statistic {
@@ -57,26 +39,9 @@ export interface TrustPillar {
   icon: string;
 }
 
-export interface UserProfile {
-  name: string;
-  role: string;
-  department: string;
-  email: string;
-  avatar: string;
-}
-
 export interface FilterOption {
   value: string;
   label: string;
-}
-
-export interface TenderFilters {
-  department: string;
-  category: string;
-  location: string;
-  tenderValue: string;
-  closingDate: string;
-  status: string;
 }
 
 export interface NavLink {
@@ -86,5 +51,27 @@ export interface NavLink {
 
 export interface FooterSection {
   title: string;
-  links: { label: string; href: string }[];
+  links: NavLink[];
+}
+
+export interface UserProfile {
+  name: string;
+  role: string;
+  department: string;
+  email: string;
+  avatar: string;
+}
+
+export interface ComplianceWorkflowStep {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface ComplianceCheck {
+  id: string;
+  name: string;
+  status: 'compliant' | 'review' | 'non-compliant';
+  description: string;
 }
