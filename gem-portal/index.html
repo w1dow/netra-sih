@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GeM Bid and Tender Assessment Portal — Government of India Secure Login" />
+  <title>GeM Bid &amp; Tender Assessment Portal | Government of India</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ── Accessibility Skip Link ── -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ============================================================
+     TOP UTILITY BAR
+     ============================================================ -->
+<div class="utility-bar" role="banner" aria-label="Portal utility bar">
+  <div class="inner">
+    <div class="utility-left">
+      <span class="dot" title="Portal is online"></span>
+      <span class="detail">Official Portal of the Government of India</span>
+    </div>
+    <div class="utility-right">
+      <button class="utility-demo" aria-label="Help"><i class="fas fa-question-circle"></i> Help</button>
+      <button class="utility-demo" aria-label="Contact Us"><i class="fas fa-envelope"></i> Contact Us</button>
+      <button class="utility-demo" aria-label="Accessibility"><i class="fas fa-universal-access"></i> Accessibility</button>
+      <select class="lang-select" aria-label="Select language">
+        <option>&#127462;&#127475; English</option>
+        <option>हिन्दी</option>
+        <option>বাংলা</option>
+        <option>தமிழ்</option>
+        <option>తెలుగు</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <!-- Brand / Logo -->
+    <div class="header-brand">
+      <!-- Government Emblem Placeholder -->
+      <div class="emblem" role="img" aria-label="Government of India Emblem (Placeholder)">
+        <div class="emblem-icon">&#9960;</div>
+        <div class="emblem-star">&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="brand-text">
+        <span class="brand-gov">Government of India</span>
+        <span class="brand-name">GeM Bid &amp; Tender Assessment Portal</span>
+        <span class="brand-sub">Ministry of Commerce &amp; Industry</span>
+      </div>
+    </div>
+
+    <!-- Header Right Info -->
+    <div style="text-align:right; font-size:11px; color:#637085; display:flex; flex-direction:column; gap:4px; align-items:flex-end;">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <i class="fas fa-shield-halved" style="color:#138808;"></i>
+        <span style="font-weight:600; color:#138808;">Secured Portal</span>
+      </div>
+      <div>ISO 27001 Certified &nbsp;|&nbsp; CERT-In Compliant</div>
+      <div style="display:flex; align-items:center; gap:4px; font-size:10px; color:#999;">
+        <i class="fas fa-clock"></i>
+        <span id="portal-time"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Tricolor stripe -->
+<div class="tricolor-bar" role="presentation"></div>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<main id="main-content">
+
+  <!-- Page Title Banner -->
+  <div class="page-title-banner">
+    <h1>Bid &amp; Tender Assessment System</h1>
+    <p>Secure, transparent, and efficient procurement evaluation platform for Government of India</p>
+  </div>
+
+  <!-- ── LOGIN CARD ── -->
+  <div class="login-card" role="main" aria-label="Login form">
+
+    <!-- Card Header -->
+    <div class="card-header">
+      <h2><i class="fas fa-lock" style="margin-right:8px; opacity:.8;"></i>Welcome to GeM Assessment Portal</h2>
+      <p>Please select your account type and login securely</p>
+    </div>
+
+    <!-- Tab Switcher -->
+    <div class="tab-switcher" role="tablist" aria-label="Login type selector">
+      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="gov-form" data-target="gov-form" id="tab-gov">
+        <div class="tab-icon"><i class="fas fa-landmark"></i></div>
+        <span class="tab-label">Government Login</span>
+        <span class="tab-desc">For Officers &amp; Procurement Authorities</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="company-form" data-target="company-form" id="tab-company">
+        <div class="tab-icon"><i class="fas fa-building"></i></div>
+        <span class="tab-label">Company / Vendor Login</span>
+        <span class="tab-desc">For Registered Sellers &amp; Bidders</span>
+      </button>
+    </div>
+
+    <!-- ── GOVERNMENT LOGIN FORM ── -->
+    <div class="form-panel active" id="gov-form" role="tabpanel" aria-labelledby="tab-gov">
+
+      <!-- Toast -->
+      <div class="toast" id="gov-toast" role="alert" aria-live="polite"></div>
+
+      <!-- Email / Officer ID -->
+      <div class="form-group">
+        <label for="gov-email">Official Email ID / Officer ID <span class="required">*</span></label>
+        <div class="input-wrap">
+          <i class="fas fa-id-badge input-icon"></i>
+          <input type="text" id="gov-email" class="email-field" placeholder="officer@nic.in or GOV-XXXXX" autocomplete="username" aria-required="true" />
+        </div>
+        <div class="field-error" id="gov-email-err" role="alert"></div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="gov-pw">Password <span class="required">*</span></label>
+        <div class="input-wrap">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="gov-pw" class="pw-field" placeholder="Enter your password" autocomplete="current-password" aria-required="true" />
+          <button class="toggle-pw" type="button" aria-label="Show password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <div class="field-error" id="gov-pw-err" role="alert"></div>
+      </div>
+
+      <!-- CAPTCHA -->
+      <div class="form-group captcha-group">
+        <label for="gov-captcha-input">CAPTCHA Verification <span class="required">*</span></label>
+        <div class="captcha-box">
+          <div class="captcha-image" aria-label="CAPTCHA image" role="img">
+            <div class="captcha-text" id="gov-captcha-text">------</div>
+          </div>
+          <button class="captcha-refresh" data-form="gov" type="button" title="Refresh CAPTCHA" aria-label="Refresh CAPTCHA">
+            <i class="fas fa-rotate-right"></i>
+          </button>
+          <div class="input-wrap" style="flex:1;">
+            <i class="fas fa-keyboard input-icon"></i>
+            <input type="text" id="gov-captcha-input" placeholder="Enter CAPTCHA" maxlength="6" style="padding-left:2.5rem;" autocomplete="off" aria-required="true" />
+          </div>
+        </div>
+        <div class="field-error" id="gov-captcha-err" role="alert"></div>
+      </div>
+
+      <!-- Remember / Forgot -->
+      <div class="form-row">
+        <label class="checkbox-wrap">
+          <input type="checkbox" id="gov-remember" />
+          Remember me on this device
+        </label>
+        <a href="#" class="forgot-link"><i class="fas fa-key" style="font-size:11px;"></i> Forgot Password?</a>
+      </div>
+
+      <!-- Submit -->
+      <button class="btn-submit" id="gov-login-btn" type="button" aria-label="Login securely as Government Officer">
+        <div class="spinner" aria-hidden="true"></div>
+        <i class="fas fa-sign-in-alt"></i>
+        <span class="btn-text">Login Securely</span>
+      </button>
+
+      <!-- Security Note -->
+      <p class="security-note">
+        <i class="fas fa-shield-halved"></i>
+        Your information is protected using secure authentication.
+      </p>
+    </div>
+
+    <!-- ── COMPANY / VENDOR LOGIN FORM ── -->
+    <div class="form-panel" id="company-form" role="tabpanel" aria-labelledby="tab-company">
+
+      <!-- Toast -->
+      <div class="toast" id="company-toast" role="alert" aria-live="polite"></div>
+
+      <!-- Email / Vendor ID -->
+      <div class="form-group">
+        <label for="company-email">Registered Email / Vendor ID <span class="required">*</span></label>
+        <div class="input-wrap">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="text" id="company-email" class="email-field" placeholder="vendor@company.com or VEN-XXXXX" autocomplete="username" aria-required="true" />
+        </div>
+        <div class="field-error" id="company-email-err" role="alert"></div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="company-pw">Password <span class="required">*</span></label>
+        <div class="input-wrap">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="company-pw" class="pw-field" placeholder="Enter your password" autocomplete="current-password" aria-required="true" />
+          <button class="toggle-pw" type="button" aria-label="Show password">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <div class="field-error" id="company-pw-err" role="alert"></div>
+      </div>
+
+      <!-- CAPTCHA -->
+      <div class="form-group captcha-group">
+        <label for="company-captcha-input">CAPTCHA Verification <span class="required">*</span></label>
+        <div class="captcha-box">
+          <div class="captcha-image" aria-label="CAPTCHA image" role="img">
+            <div class="captcha-text" id="company-captcha-text">------</div>
+          </div>
+          <button class="captcha-refresh" data-form="company" type="button" title="Refresh CAPTCHA" aria-label="Refresh CAPTCHA">
+            <i class="fas fa-rotate-right"></i>
+          </button>
+          <div class="input-wrap" style="flex:1;">
+            <i class="fas fa-keyboard input-icon"></i>
+            <input type="text" id="company-captcha-input" placeholder="Enter CAPTCHA" maxlength="6" style="padding-left:2.5rem;" autocomplete="off" aria-required="true" />
+          </div>
+        </div>
+        <div class="field-error" id="company-captcha-err" role="alert"></div>
+      </div>
+
+      <!-- Remember / Forgot -->
+      <div class="form-row">
+        <label class="checkbox-wrap">
+          <input type="checkbox" id="company-remember" />
+          Remember me on this device
+        </label>
+        <a href="#" class="forgot-link"><i class="fas fa-key" style="font-size:11px;"></i> Forgot Password?</a>
+      </div>
+
+      <!-- Submit -->
+      <button class="btn-submit" id="company-login-btn" type="button" aria-label="Login securely as Company or Vendor">
+        <div class="spinner" aria-hidden="true"></div>
+        <i class="fas fa-sign-in-alt"></i>
+        <span class="btn-text">Login Securely</span>
+      </button>
+
+      <!-- Security Note -->
+      <p class="security-note">
+        <i class="fas fa-shield-halved"></i>
+        Your information is protected using secure authentication.
+      </p>
+    </div>
+
+  </div><!-- /login-card -->
+
+  <!-- ── REGISTRATION SECTION ── -->
+  <div class="register-section">
+    <p class="reg-title"><i class="fas fa-user-plus" style="margin-right:5px;"></i>New to the portal? Register here</p>
+    <div class="reg-cards">
+      <div class="reg-card" tabindex="0" role="button" aria-label="Government Officer Registration">
+        <i class="fas fa-landmark"></i>
+        <span>Government Officer Registration</span>
+        <small>Register as a Government Officer or Procurement Authority</small>
+      </div>
+      <div class="reg-card" tabindex="0" role="button" aria-label="Company or Vendor Registration">
+        <i class="fas fa-building"></i>
+        <span>Company / Vendor Registration</span>
+        <small>Register as a Seller or Bidder on GeM platform</small>
+      </div>
+    </div>
+    <div class="help-links">
+      <a href="#" class="help-link-btn"><i class="fas fa-circle-question"></i> Login Help</a>
+      <a href="#" class="help-link-btn"><i class="fas fa-key"></i> Password Recovery</a>
+      <a href="#" class="help-link-btn"><i class="fas fa-file-pdf"></i> User Manual</a>
+    </div>
+  </div>
+
+  <!-- ── TRUST / SECURITY SECTION ── -->
+  <div class="trust-section">
+    <div class="trust-title">Portal Security &amp; Trust Features</div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon"><i class="fas fa-lock"></i></div>
+        <h4>Secure Authentication</h4>
+        <p>Protected access with multi-layer encryption and CAPTCHA verification for authorized users</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon"><i class="fas fa-user-check"></i></div>
+        <h4>Verified Users</h4>
+        <p>Access restricted to officially registered Government Officers and registered Vendors only</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon"><i class="fas fa-shield-halved"></i></div>
+        <h4>Data Protection</h4>
+        <p>Secure handling of all bid and tender information as per Government IT security guidelines</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">GeM Bid &amp; Tender Assessment Portal</div>
+        <div class="footer-brand-sub">Government of India — Ministry of Commerce &amp; Industry</div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#">About Portal</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Help</a>
+        <a href="#">Contact</a>
+        <a href="#">RTI</a>
+        <a href="#">Sitemap</a>
+      </nav>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <div>
+        <span>&#169; <span id="footer-year">2026</span> Government of India. All Rights Reserved.</span>
+        <br />
+        <span style="color:#4a6a8a;">Designed for secure and transparent bid &amp; tender assessment.</span>
+      </div>
+      <div class="footer-badges">
+        <span class="badge"><i class="fas fa-lock" style="margin-right:4px;"></i>SSL Secured</span>
+        <span class="badge"><i class="fas fa-certificate" style="margin-right:4px;"></i>ISO 27001</span>
+        <span class="badge">CERT-In Compliant</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     DEMO SUCCESS MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <div class="modal-icon">&#9989;</div>
+    <h3 id="modal-title">Authentication Successful!</h3>
+    <p>
+      You have successfully authenticated as a <strong id="modal-login-type">Government Officer</strong>.<br /><br />
+      <em>Note: This is a frontend prototype for SIH demonstration. In the full system, you would be redirected to the assessment dashboard.</em>
+    </p>
+    <button class="modal-close" onclick="closeModal()" aria-label="Close dialog">
+      <i class="fas fa-times" style="margin-right:6px;"></i>Close
+    </button>
+  </div>
+</div>
+
+<!-- Script -->
+<script src="script.js"></script>
+
+<!-- Live clock in header -->
+<script>
+  (function () {
+    function tick() {
+      var el = document.getElementById("portal-time");
+      if (!el) return;
+      var now = new Date();
+      el.textContent = now.toLocaleDateString("en-IN", { weekday: "short", year: "numeric", month: "short", day: "numeric" })
+        + "  " + now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+</body>
+</html>
