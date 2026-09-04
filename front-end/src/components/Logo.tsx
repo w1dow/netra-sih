@@ -7,21 +7,25 @@ interface LogoProps {
 
 export default function Logo({ size = 'md', showText = true }: LogoProps) {
   const heights: Record<NonNullable<LogoProps['size']>, number> = {
-    sm: 32,
-    md: 44,
-    lg: 60,
+    sm: 36,
+    md: 52,
+    lg: 72,
   };
 
+  const h = heights[size];
+
   return (
-    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+    <div style={{ display: 'inline-flex', alignItems: 'center' }}>
       <img
-        src="/netra-logo.jpeg"
-        alt="NETRA — National Evaluation & Tender Audit"
+        src="/netra-logo.png"
+        alt="NETRA — National Evaluation and Tender Risk Assessment"
         style={{
-          height: heights[size],
+          height: h,
           width: 'auto',
           objectFit: 'contain',
           display: 'block',
+          /* PNG has transparency — no background rectangle */
+          imageRendering: 'auto',
         }}
       />
     </div>
