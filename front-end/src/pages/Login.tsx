@@ -6,12 +6,42 @@ import Logo from '../components/Logo';
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('rajesh.sharma@apexnet.in');
-  const [password, setPassword] = useState('••••••••••••');
+  const [password, setPassword] = useState('test_pass');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || 'Login failed');
+      return;
+    }
+
+    console.log('Login response:', data);
+
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
+
     navigate('/profile');
-  };
+
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('Unable to connect to backend');
+  }
+};
 
   return (
     <div className="page" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', padding: '40px 20px' }}>
