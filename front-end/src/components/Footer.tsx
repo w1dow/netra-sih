@@ -1,32 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
-import { footerSections } from '@/data';
-import './Footer.css';
+import { footerSections } from '../constants';
 
 export default function Footer() {
   return (
-    <footer className="footer" role="contentinfo">
-      {/* Accent line */}
-      <div className="footer__accent" aria-hidden="true" />
+    <footer className="footer">
+      <div className="footer__container">
+        <div className="footer__grid">
+          <div className="footer__brand-col">
+            <Logo size="md" />
+            <p className="footer__tagline">
+              National Evaluation & Tender Audit Platform — Empowering transparent, AI-driven public procurement for government agencies and enterprise bidders.
+            </p>
 
-      <div className="footer__container container">
-        {/* Branding */}
-        <div className="footer__brand">
-          <Logo variant="light" size="md" />
-          <p className="footer__tagline">
-            AI-powered bid compliance verification for transparent, accountable and efficient
-            government procurement.
-          </p>
-        </div>
+            <div className="footer__compliance-notice">
+              <span className="footer__badge">GOVERNMENT STANDARD</span>
+              <span>Compliant with GFR 2017 & GeM Guidelines</span>
+            </div>
+          </div>
 
-        {/* Link sections */}
-        <div className="footer__sections">
-          {footerSections.map((section) => (
-            <div key={section.title} className="footer__section">
-              <h4 className="footer__section-title">{section.title}</h4>
+          {footerSections.map((sec) => (
+            <div key={sec.title} className="footer__col">
+              <h4 className="footer__col-title">{sec.title}</h4>
               <ul className="footer__list">
-                {section.links.map((link) => (
+                {sec.links.map((link) => (
                   <li key={link.label}>
                     <Link to={link.href} className="footer__link">
                       {link.label}
@@ -37,18 +35,12 @@ export default function Footer() {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="footer__bottom">
-        <div className="container footer__bottom-inner">
-          <p className="footer__copyright">
-            © {new Date().getFullYear()} NETRA — National Evaluation & Tender Risk Assessment.
-            All rights reserved.
-          </p>
-          <p className="footer__disclaimer">
-            This is a demonstration platform. Not affiliated with any government body.
-          </p>
+        <div className="footer__bottom">
+          <p>© {new Date().getFullYear()} NETRA Platform. All rights reserved.</p>
+          <div className="footer__bottom-links">
+            <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)' }}>Express JS & MySQL Backend</span>
+          </div>
         </div>
       </div>
     </footer>
